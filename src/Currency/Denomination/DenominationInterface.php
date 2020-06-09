@@ -10,4 +10,6 @@ interface DenominationInterface
     public function getValue(): int;
     public function getCurrencyUnit(): UnitInterface;
     public function getCurrencyFormat(): FormatInterface;
+
+    public function getName(int $quantity): string;
 }

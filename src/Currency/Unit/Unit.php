@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Changemaker\Currency\Unit;
 
 use Changemaker\Currency\CurrencyInterface;
+use Changemaker\Currency\Denomination\DenominationInterface;
 use Changemaker\Generic\SingularAndPluralNameTrait;
 
 class Unit implements UnitInterface
@@ -29,6 +30,9 @@ class Unit implements UnitInterface
     /** @var string|null */
     private $separator_symbol_mask = null;
 
+    /** @var DenominationInterface[] */
+    private $denominations = [];
+
     public function __construct(
         CurrencyInterface $currency,
         string $name_singular,
@@ -36,7 +40,6 @@ class Unit implements UnitInterface
         ?UnitInterface $parentUnit     = null,
         ?int $parent_unit_ratio        = null,
         ?string $separator_symbol_mask = null,
-        ?UnitInterface $childUnit      = null,
         ?int $id                       = null
 
     )
@@ -46,7 +49,6 @@ class Unit implements UnitInterface
         $this->parentUnit            = $parentUnit;
         $this->parent_unit_ratio     = $parent_unit_ratio;
         $this->separator_symbol_mask = $separator_symbol_mask;
-        $this->childUnit             = $childUnit;
 
         $this->setNames($name_singular, $name_plural);
     }
@@ -71,18 +73,46 @@ class Unit implements UnitInterface
         return $this->parent_unit_ratio;
     }
 
+    public function setChildUnit(UnitInterface $child): void
+    {
+        $this->childUnit = $child;
+    }
+
     public function hasChildUnit(): bool
     {
-        return $this->childUnit === null;
+        return $this->childUnit !== null;
     }
 
     public function getChildUnit(): ?UnitInterface
     {
-        return $this->chlidUnit;
+        return $this->childUnit;
     }
 
     public function getSeparatorMask(): ?string
     {
         return $this->separator_symbol_mask;
+    }
+
+    public function addDenomination(DenominationInterface $denomination): void
+    {
+        $this->denominations[$denomination->getValue()] = $denomination;
+    }
+
+    /**
+     * @param DenominationInterface[] $denominations
+     */
+    public function addDenominations(array $denominations): void
+    {
+        foreach ($denominations as $denomination) {
+            $this->addDenomination($denomination);
+        }
+    }
+
+    /**
+     * @return DenominationInterface[]
+     */
+    public function getDenominations(): array
+    {
+        return $this->denominations;
     }
 }

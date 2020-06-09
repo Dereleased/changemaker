@@ -32,11 +32,6 @@ class ChangeUnit implements ChangeUnitInterface
 
     public function __toString(): string
     {
-        return sprintf("%d x %d %s %s",
-            $this->count,
-            $this->denomination->getValue(),
-            $this->denomination->getCurrencyUnit()->getCurrency()->getName(),
-            $this->count === 1 ? $this->denomination->getCurrencyFormat()->getNameSingular() : $this->denomination->getCurrencyFormat()->getNamePlural()
-        );
+        return sprintf("%d x %s", $this->count, $this->denomination->getName($this->count));
     }
 }

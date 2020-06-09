@@ -11,5 +11,6 @@ interface CurrencyInterface
     public function getCode(): string;
     public function getSymbol(): string;
 
+    public function setUnit(UnitInterface $unit): void;
     public function getUnit(): UnitInterface;
 }

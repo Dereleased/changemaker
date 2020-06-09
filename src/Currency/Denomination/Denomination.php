@@ -18,11 +18,20 @@ class Denomination implements DenominationInterface
     /** @var FormatInterface */
     private $currencyFormat;
 
-    public function __construct(int $value, UnitInterface $currencyUnit, FormatInterface $currencyFormat)
+    /** @var string|null */
+    private $name_singular = null;
+
+    /** @var string|null */
+    private $name_plural = null;
+
+    public function __construct(int $value, UnitInterface $currencyUnit, FormatInterface $currencyFormat, ?string $name_singular = null, ?string $name_plural = null)
     {
         $this->value          = $value;
         $this->currencyUnit   = $currencyUnit;
         $this->currencyFormat = $currencyFormat;
+
+        $this->name_singular  = $name_singular;
+        $this->name_plural    = $name_plural;
     }
 
     public function getValue(): int
@@ -38,5 +47,35 @@ class Denomination implements DenominationInterface
     public function getcurrencyFormat(): FormatInterface
     {
         return $this->currencyFormat;
+    }
+
+    public function getNameSingular(): ?string
+    {
+        return $this->name_singular;
+    }
+
+    public function getNamePlural(): ?string
+    {
+        return $this->name_plural;
+    }
+
+    public function getName(int $quantity): string
+    {
+        $type = "";
+        if ($quantity === 1) {
+            if ($this->name_singular !== null) {
+                return $this->name_singular;
+            }
+
+            $type = $this->currencyFormat->getNameSingular();
+        } else {
+            if ($this->name_plural !== null) {
+                return $this->name_plural;
+            }
+
+            $type = $this->currencyFormat->getNamePlural();
+        }
+        
+        return sprintf("%d %s %s", $this->value, $this->currencyUnit->getNameSingular(), $type);
     }
 }

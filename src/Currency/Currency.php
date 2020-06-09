@@ -23,13 +23,12 @@ class Currency implements CurrencyInterface
     /** @var UnitInterface */
     private $unit;
 
-    public function __construct(string $symbol, string $abbr, string $name, UnitInterface $unit, int $id = null)
+    public function __construct(string $symbol, string $abbr, string $name, int $id = null)
     {
         $this->id     = $id;
         $this->symbol = $symbol;
         $this->abbr   = $abbr;
         $this->name   = $name;
-        $this->unit   = $unit;
     }
 
     public function getId(): ?int
@@ -47,13 +46,22 @@ class Currency implements CurrencyInterface
         return $this->name;
     }
 
-    public function getSymbol(): ?string
+    public function getSymbol(): string
     {
-        return $this->symbol;
+        return $this->symbol ?? '';
+    }
+
+    public function setUnit(UnitInterface $unit): void
+    {
+        $this->unit = $unit;
     }
 
     public function getUnit(): UnitInterface
     {
+        if ($this->unit === null) {
+            throw new CurrencyHasNoUnitException;
+        }
+
         return $this->unit;
     }
 }

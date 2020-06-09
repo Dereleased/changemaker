@@ -2,4 +2,7 @@
 
 namespace Changemaker\Exception;
 
-class InvalidCurrencyDefinitionException extends \Exception {}
+class InvalidCurrencyDefinitionException extends \Exception
+{
+    
+}

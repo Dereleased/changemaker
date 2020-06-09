@@ -44,6 +44,9 @@ CREATE TABLE currency_unit_denom (
     
     currency_format_id int(11) not null,
     
+    name_singular varchar(128) null default null,
+    name_plural varchar(128) null default null,
+
     index currency_unit_id (currency_unit_id),
     unique key prev_dupe (currency_unit_id, value, currency_format_id)
 ) ENGINE=InnoDB;
