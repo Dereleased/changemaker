@@ -136,7 +136,8 @@ class Calculator
         $difference = $amount_paid - $amount_due;
 
         if ($difference < 0) {
-            throw new BalanceNotSatisfiedException($this->createBalanceFromSmallestUnit($difference));
+            $balance = $this->createBalanceFromSmallestUnit($difference);
+            throw new BalanceNotSatisfiedException($balance);
         }
 
         $changeUnits = [];
