@@ -26,4 +26,9 @@ trait SingularAndPluralNameTrait {
         $this->name_singular = $singular;
         $this->name_plural   = $plural;
     }
+
+    public function getName(int $quantity): string
+    {
+        return $quantity === 1 ? $this->name_singular : $this->name_plural;
+    }
 }
