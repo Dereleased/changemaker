@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Changemaker\Balance;
 
 use Changemaker\Currency\CurrencyInterface;
@@ -60,7 +62,7 @@ class Balance implements BalanceInterface
         do {
             if (isset($units_by_name[$unit->getNameSingular()])) {
                 if ($unit->hasParentUnit()) {
-                    $balance_due_string .= ($unit->getSeparatorMask())[0];
+                    $balance_due_string .= $unit->getSeparatorMask();
                 } else {
                     $balance_due_string .= $this->currency->getSymbol();
                 }

@@ -9,10 +9,10 @@ use Changemaker\Currency\Denomination\DenominationInterface;
 class ChangeUnit implements ChangeUnitInterface
 {
     /** @var DenominationInterface */
-    private $denomination;
+    protected $denomination;
 
     /** @var int */
-    private $count;
+    protected $count;
 
     public function __construct(DenominationInterface $denomination, int $count)
     {

@@ -11,10 +11,10 @@ class Format implements FormatInterface
     use SingularAndPluralNameTrait;
 
     /** @var int */
-    private $id;
+    protected $id;
 
     /** @var bool */
-    private $is_physical;
+    protected $is_physical;
 
     public function __construct(int $id, string $name_singular, string $name_plural, bool $is_physical)
     {

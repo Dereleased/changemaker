@@ -13,22 +13,22 @@ use Changemaker\Balance\{ Balance, BalanceInterface, BalanceUnit };
 class Calculator
 {
     /** @var CurrencyInterface */
-    private $currency;
+    protected $currency;
 
     /** @var string */
-    private $format;
+    protected $format;
 
     /** @var string */
-    private $allowable;
+    protected $allowable;
 
     /** @var int */
-    private $ratio;
+    protected $ratio;
 
     /** @var UnitInterface[] */
-    private $unitPositions = [];
+    protected $unitPositions = [];
 
     /** @var int */
-    private $maxPosition;
+    protected $maxPosition;
 
     public function __construct(CurrencyInterface $currency)
     {

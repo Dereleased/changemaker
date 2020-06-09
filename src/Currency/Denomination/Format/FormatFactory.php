@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Changemaker\Currency\Denomination\Format;
 
 class FormatFactory
 {
     /** @var FormatInterface[] */
-    private static $instances = [];
+    protected static $instances = [];
 
-    private function __construct() {}
+    protected function __construct() {}
 
     public static function create(int $id, string $name_singular, string $name_plural, bool $is_physical, string $override_class_name = null)
     {

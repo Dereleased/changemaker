@@ -17,7 +17,8 @@ class SelectCurrencyDenominationFormats implements SQLStatementInterface
     {
         return "SELECT
             id,
-            name,
+            name_singular,
+            name_plural,
             is_physical
         FROM
             currency_format

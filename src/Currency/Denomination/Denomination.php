@@ -9,29 +9,44 @@ use Changemaker\Currency\Denomination\Format\FormatInterface;
 
 class Denomination implements DenominationInterface
 {
+    /** @var int|null */
+    protected $id;
+
     /** @var int */
-    private $value;
+    protected $value;
 
     /** @var UnitInterface */
-    private $currencyUnit;
+    protected $currencyUnit;
 
     /** @var FormatInterface */
-    private $currencyFormat;
+    protected $currencyFormat;
 
     /** @var string|null */
-    private $name_singular = null;
+    protected $name_singular = null;
 
     /** @var string|null */
-    private $name_plural = null;
+    protected $name_plural = null;
 
-    public function __construct(int $value, UnitInterface $currencyUnit, FormatInterface $currencyFormat, ?string $name_singular = null, ?string $name_plural = null)
+    public function __construct(
+        int $value,
+        UnitInterface $currencyUnit,
+        FormatInterface $currencyFormat,
+        ?string $name_singular = null,
+        ?string $name_plural = null,
+        ?int $id = null
+    )
     {
         $this->value          = $value;
         $this->currencyUnit   = $currencyUnit;
         $this->currencyFormat = $currencyFormat;
-
+        $this->id             = $id;
         $this->name_singular  = $name_singular;
         $this->name_plural    = $name_plural;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function getValue(): int

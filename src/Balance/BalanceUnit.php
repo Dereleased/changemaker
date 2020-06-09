@@ -9,10 +9,10 @@ use Changemaker\Currency\Unit\UnitInterface;
 class BalanceUnit implements BalanceUnitInterface
 {
     /** @var UnitInterface */
-    private $unit;
+    protected $unit;
 
     /** @var int */
-    private $quantity;
+    protected $quantity;
 
     public function __construct(UnitInterface $unit, int $quantity)
     {

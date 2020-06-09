@@ -8,6 +8,7 @@ use Changemaker\Generic\SingularAndPluralNameInterface;
 
 interface UnitInterface extends SingularAndPluralNameInterface
 {
+    public function getId(): ?int;
     public function getCurrency(): CurrencyInterface;
     public function hasParentUnit(): bool;
     public function getParentUnit(): ?UnitInterface;

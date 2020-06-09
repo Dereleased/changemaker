@@ -13,28 +13,28 @@ class Unit implements UnitInterface
     use SingularAndPluralNameTrait;
 
     /** @var int */
-    private $id;
+    protected $id;
 
     /** @var CurrencyInterface */
-    private $currency;
+    protected $currency;
 
     /** @var ?UnitInterface */
-    private $parentUnit = null;
+    protected $parentUnit = null;
 
     /** @var int|null */
-    private $parent_unit_ratio = null;
+    protected $parent_unit_ratio = null;
 
     /** @var ?UnitInterface */
-    private $childUnit = null;
+    protected $childUnit = null;
 
     /** @var string|null */
-    private $separator_symbol_mask = null;
+    protected $separator_symbol_mask = null;
 
     /** @var DenominationInterface[] */
-    private $denominations = [];
+    protected $denominations = [];
 
     /** @var bool */
-    private $denom_sorted = false;
+    protected $denom_sorted = false;
 
     public function __construct(
         CurrencyInterface $currency,
@@ -54,6 +54,11 @@ class Unit implements UnitInterface
         $this->separator_symbol_mask = $separator_symbol_mask;
 
         $this->setNames($name_singular, $name_plural);
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function getCurrency(): CurrencyInterface

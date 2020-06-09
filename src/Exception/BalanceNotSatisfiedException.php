@@ -7,7 +7,7 @@ use Changemaker\Balance\BalanceInterface;
 class BalanceNotSatisfiedException extends \Exception
 {
     /** @var BalanceInterface */
-    private $balance;
+    protected $balance;
 
     public function __construct(BalanceInterface $balance)
     {

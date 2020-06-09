@@ -9,25 +9,25 @@ use Changemaker\Currency\Unit\UnitInterface;
 class Currency implements CurrencyInterface
 {
     /** @var int|null */
-    private $id;
+    protected $id;
 
     /** @var string|null */
-    private $symbol;
+    protected $symbol;
 
     /** @var string */
-    private $abbr;
+    protected $code;
 
     /** @var string */
-    private $name;
+    protected $name;
 
     /** @var UnitInterface */
-    private $unit;
+    protected $unit;
 
-    public function __construct(string $symbol, string $abbr, string $name, int $id = null)
+    public function __construct(string $symbol, string $code, string $name, int $id = null)
     {
         $this->id     = $id;
         $this->symbol = $symbol;
-        $this->abbr   = $abbr;
+        $this->code   = $code;
         $this->name   = $name;
     }
 
