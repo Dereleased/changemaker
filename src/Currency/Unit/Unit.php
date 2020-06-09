@@ -33,6 +33,9 @@ class Unit implements UnitInterface
     /** @var DenominationInterface[] */
     private $denominations = [];
 
+    /** @var bool */
+    private $denom_sorted = false;
+
     public function __construct(
         CurrencyInterface $currency,
         string $name_singular,
@@ -95,6 +98,8 @@ class Unit implements UnitInterface
 
     public function addDenomination(DenominationInterface $denomination): void
     {
+        $this->denom_sorted = false;
+
         $this->denominations[$denomination->getValue()] = $denomination;
     }
 
@@ -113,6 +118,11 @@ class Unit implements UnitInterface
      */
     public function getDenominations(): array
     {
+        if (!$this->denom_sorted) {
+            krsort($this->denominations);
+            $this->denom_sorted = true;
+        }
+
         return $this->denominations;
     }
 }
