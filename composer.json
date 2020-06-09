@@ -1,0 +1,20 @@
+{
+    "name": "crsii/changemaker",
+    "description": "A multi-currency change calculator",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Clark Scott",
+            "email": "dereleased@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {
+        "symfony/console": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Changemaker\\": "src/"
+        }
+    }
+}
