@@ -49,7 +49,13 @@ class CurrencyBuilder
             FormatFactory::create((int)$df['id'], $df['name_singular'], $df['name_plural'], (bool)$df['is_physical']);
         }
 
-        $currency_data = $this->pdoExecutor->select($select)[0];
+        $currency_data = $this->pdoExecutor->select($select);
+
+        if (!count($currency_data)) {
+            throw new \Exception("Unable to find requested currency: " . $select->getParams()[0]);
+        }
+
+        $currency_data = $currency_data[0];
 
         $currency = new Currency($currency_data['symbol'], $currency_data['code'], $currency_data['name'], (int)$currency_data['id']);
 

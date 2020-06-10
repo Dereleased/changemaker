@@ -1,3 +1,5 @@
+CREATE DATABASE changemaker;
+
 CREATE TABLE currency (
     id int(11) unsigned not null primary key auto_increment,
     code char(3) not null,
