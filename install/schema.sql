@@ -53,10 +53,15 @@ INSERT INTO currency_format (id, name_singular, name_plural, is_physical) VALUES
     (3, 'gem', 'gems', 0)
 ;
 
-INSERT INTO `currency` (`id`, `code`, `symbol`, `name`) VALUES (1, 'USD', '$', 'United States Dollar');
+INSERT INTO `currency` (`code`, `symbol`, `name`) VALUES ('USD', '$', 'United States Dollar');
+INSERT INTO `currency` (`code`, `symbol`, `name`) VALUES ('MAL', '#', 'Maltese Scudo');
 
-INSERT INTO `currency_unit` (`id`, `currency_id`, `parent_unit_id`, `parent_unit_ratio`, `name_singular`, `name_plural`, `separator_symbol_mask`) VALUES (1, 1, NULL, NULL, 'Dollar', 'Dollars', NULL);
-INSERT INTO `currency_unit` (`id`, `currency_id`, `parent_unit_id`, `parent_unit_ratio`, `name_singular`, `name_plural`, `separator_symbol_mask`) VALUES (2, 1, 1, 100, 'Cent', 'Cents', '.');
+INSERT INTO `currency_unit` (`currency_id`, `parent_unit_id`, `parent_unit_ratio`, `name_singular`, `name_plural`, `separator_symbol_mask`) VALUES (1, NULL, NULL, 'Dollar', 'Dollars', NULL);
+INSERT INTO `currency_unit` (`currency_id`, `parent_unit_id`, `parent_unit_ratio`, `name_singular`, `name_plural`, `separator_symbol_mask`) VALUES (1, 1, 100, 'Cent', 'Cents', '.');
+INSERT INTO `currency_unit` (`currency_id`, `parent_unit_id`, `parent_unit_ratio`, `name_singular`, `name_plural`, `separator_symbol_mask`) VALUES (2, NULL, NULL, 'Scudo', 'Scudi', NULL);
+INSERT INTO `currency_unit` (`currency_id`, `parent_unit_id`, `parent_unit_ratio`, `name_singular`, `name_plural`, `separator_symbol_mask`) VALUES (2, 3, 12, 'tari', 'tari', 't');
+INSERT INTO `currency_unit` (`currency_id`, `parent_unit_id`, `parent_unit_ratio`, `name_singular`, `name_plural`, `separator_symbol_mask`) VALUES (2, 4, 20, 'grano', 'grani', 'g');
+INSERT INTO `currency_unit` (`currency_id`, `parent_unit_id`, `parent_unit_ratio`, `name_singular`, `name_plural`, `separator_symbol_mask`) VALUES (2, 5, 6, 'piccolo', 'piccoli', 'p');
 
 INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (1, 100, 1, NULL, NULL);
 INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (1, 50, 1, NULL, NULL);
@@ -68,3 +73,18 @@ INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format
 INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (2, 10, 2, 'dime', 'dimes');
 INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (2, 5, 2, 'nickel', 'nickels');
 INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (2, 1, 2, 'penny', 'pennies');
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (3, 1000, 1, NULL, NULL);
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (3, 500, 1, NULL, NULL);
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (3, 100, 1, NULL, NULL);
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (3, 50, 1, NULL, NULL);
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (3, 20, 1, NULL, NULL);
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (3, 10, 1, NULL, NULL);
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (3, 5, 1, NULL, NULL);
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (3, 1, 1, NULL, NULL);
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (4, 6, 1, NULL, NULL);
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (4, 1, 1, NULL, NULL);
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (5, 10, 2, NULL, NULL);
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (5, 5, 2, NULL, NULL);
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (5, 1, 2, NULL, NULL);
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (6, 3, 2, NULL, NULL);
+INSERT INTO `currency_unit_denom` (`currency_unit_id`, `value`, `currency_format_id`, `name_singular`, `name_plural`) VALUES (6, 1, 2, NULL, NULL);
