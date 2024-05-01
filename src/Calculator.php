@@ -7,7 +7,7 @@ namespace Changemaker;
 use Changemaker\Currency\CurrencyInterface;
 use Changemaker\Currency\Unit\UnitInterface;
 use Changemaker\Change\ChangeUnit;
-use Changemaker\Exception\{ UnitExceedsAllowedRangeException, BalanceNotSatisfiedException };
+use Changemaker\Exception\{ UnitExceedsAllowedRangeException, BalanceNotSatisfiedException, UnitExceedsAllowedPrecisionException };
 use Changemaker\Balance\{ Balance, BalanceInterface, BalanceUnit };
 
 class Calculator
@@ -78,8 +78,17 @@ class Calculator
         $amount_total = 0;
 
         for ($i = 1, $ratio = $this->ratio; $i <= $this->maxPosition; ++$i) {
-            $amount_current = (int)($amount_units[$i] ?? 0);
+            $amount_as_str  = $amount_units[$i] ?? "";
+            $amount_current = (int)$amount_as_str;
             $unit_current   = $this->unitPositions[$i];
+
+            if ($unit_current->hasParentUnit()) {
+                $digits = (int)ceil(log10($unit_current->getParentRatio()));
+                if (strlen((string)$amount_as_str) > $digits) {
+                    throw new UnitExceedsAllowedPrecisionException($unit_current, $digits, $amount_as_str);
+                }
+            }
+
             if ($unit_current->hasParentUnit() && $amount_current >= $unit_current->getParentRatio()) {
                 throw new UnitExceedsAllowedRangeException($unit_current, $amount_current);
             }

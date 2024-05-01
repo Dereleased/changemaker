@@ -67,7 +67,14 @@ class Balance implements BalanceInterface
                     $balance_due_string .= $this->currency->getSymbol();
                 }
 
-                $balance_due_string .= (string)$units_by_name[$unit->getNameSingular()]->getQuantity();
+                $digits = ceil(log10($unit->getParentRatio()));
+
+                $format = "%d";
+                if ($digits > 1) {
+                    $format = "%0{$digits}d";
+                }
+
+                $balance_due_string .= sprintf($format, $units_by_name[$unit->getNameSingular()]->getQuantity());
             }
         } while ($unit->hasChildUnit() && ($unit = $unit->getChildUnit()));
 

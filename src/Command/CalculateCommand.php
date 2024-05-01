@@ -14,7 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Changemaker\Helper\{ ConfigReader, CurrencyBuilder };
 use Changemaker\Calculator;
 use Changemaker\Change\ChangeUnitInterface;
-use Changemaker\Exception\{ BalanceNotSatisfiedException, UnitExceedsAlowedRangeException };
+use Changemaker\Exception\{ BalanceNotSatisfiedException, UnitExceedsAlowedRangeException, UnitExceedsAllowedPrecisionException };
 
 class CalculateCommand extends Command
 {
@@ -67,7 +67,7 @@ class CalculateCommand extends Command
             }
 
             return Command::SUCCESS;
-        } catch (UnitExceedsAllowedRangeException $range) {
+        } catch (UnitExceedsAllowedRangeException|UnitExceedsAllowedPrecisionException $range) {
             $output->writeln($range->getMessage());
             return Command::FAILURE;
         } catch (BalanceNotSatisfiedException $bal) {
